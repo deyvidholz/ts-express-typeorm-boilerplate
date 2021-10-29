@@ -1,9 +1,9 @@
 import 'dotenv/config';
 import * as jwt from 'jsonwebtoken';
 import { CryptHelper } from '../../helpers/crypt.helper';
-import { UserInvalidPassword } from './exceptions/user-invalid-password.error';
-import { UserNotFound } from './exceptions/user-not-found.error';
-import { UserValidationError } from './exceptions/user-validation.error';
+import { UserInvalidPassword } from './exceptions/user-invalid-password.exception';
+import { UserNotFound } from './exceptions/user-not-found.exception';
+import { UserValidationError } from './exceptions/user-validation.exception';
 import { User } from './user.entity';
 import { userRepository } from './user.repository';
 import { IUser } from './user.typing';
