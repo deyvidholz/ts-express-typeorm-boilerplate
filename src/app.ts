@@ -18,6 +18,7 @@ export class App {
   constructor() {
     this.setupExpress();
     this.setupPassport();
+    this.setupRoutes();
     this.setupDatabase();
   }
 
@@ -26,6 +27,9 @@ export class App {
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
     this.express.use(cors(corsConfig));
+  }
+
+  private setupRoutes() {
     this.express.use(router);
     this.express.use('/', express.static(path.join(__dirname, '..', 'public')));
   }
