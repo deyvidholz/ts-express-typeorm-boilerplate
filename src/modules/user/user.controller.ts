@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Controller } from '../../app/controller';
+import { Controller } from '../../global/controller';
 import { ResponseHttp } from '../../http/response.http';
 import { ControllerHttpStatusCodes } from '../../typing/controller.typing';
 import { UserService } from './user.service';

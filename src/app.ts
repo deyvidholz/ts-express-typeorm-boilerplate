@@ -9,7 +9,7 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { corsConfig } from './config/cors.config';
 import { userRepository } from './modules/user/user.repository';
-import router from './app/routes';
+import router from './global/routes';
 
 export class App {
   public express: express.Application;
