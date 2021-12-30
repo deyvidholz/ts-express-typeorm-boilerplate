@@ -12,7 +12,12 @@ export class Controller {
         data: await callback(),
       };
     } catch (error: any) {
-      console.log();
+      const messagesByClass = {
+        QueryFailedError: 'An unexpected error occurred', // security reasons
+      };
+
+      const message = messagesByClass[error.constructor.name] || error.message;
+
       return {
         httpStatus:
           this.mappedStatusCode[error.constructor.name] ||
@@ -20,7 +25,7 @@ export class Controller {
           this.mappedStatusCode['Error'] ||
           500,
         data: {
-          message: error.message,
+          message,
         },
       };
     }
