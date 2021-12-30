@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { CryptHelper } from '../../helpers/crypt.helper';
+import { encryptPassword } from './user.helpers';
 import { IUser } from './user.typing';
 
 @Entity({ name: 'users' })
@@ -16,6 +16,6 @@ export class User implements IUser {
 
   @BeforeInsert()
   private beforeInsert() {
-    this.password = CryptHelper.encryptPassword(this.password);
+    this.password = encryptPassword(this.password);
   }
 }

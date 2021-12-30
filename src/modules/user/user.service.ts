@@ -2,9 +2,9 @@ import 'dotenv/config';
 import * as jwt from 'jsonwebtoken';
 import { InvalidPayloadException } from '../../global/exceptions/invalid-payload.exception';
 import { ResourceNotFoundException } from '../../global/exceptions/resource-not-found.exception';
-import { CryptHelper } from '../../helpers/crypt.helper';
 import { InvalidPasswordException } from './exceptions/user-invalid-password.exception';
 import { User } from './user.entity';
+import { isValidPassword } from './user.helpers';
 import { userRepository } from './user.repository';
 import { IUser, JwtPayload } from './user.typing';
 import { userValidationSchema } from './validation-schemas/create-user.validation-schema';
@@ -34,7 +34,7 @@ export class UserService {
       throw new ResourceNotFoundException();
     }
 
-    const isPasswordInvalid: boolean = !CryptHelper.isValidPassword(
+    const isPasswordInvalid: boolean = !isValidPassword(
       password,
       user.password
     );
