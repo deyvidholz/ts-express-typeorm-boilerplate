@@ -55,7 +55,7 @@ To install the dependencies, use `yarn` or `npm install`.
 - Stage: `yarn start:stage` or `npm start:stage`
 - Production: `yarn start` or `npm start`
 
-### Important!
+### 🔸 Important!
 
 Each `start:*` script will run node/nodemon with an specific `.env.*` file. Here are the `.env` files for each one:
 
