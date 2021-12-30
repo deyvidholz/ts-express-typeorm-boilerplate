@@ -62,7 +62,7 @@ To install the dependencies, use `yarn` or `npm install`.
 - Install dependencies using `yarn` or `npm install`
 - Development: `yarn start:dev` or `npm run start:dev`
 - QA: `yarn start:qa` or `npm start:qa`
-- Stage: `yarn start:stage` or `npm start:stage`
+- Stage: `yarn start:stg` or `npm start:stg`
 - Production: `yarn start` or `npm start`
 
 ### 🔸 Important!
