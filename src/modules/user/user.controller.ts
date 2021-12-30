@@ -27,3 +27,5 @@ export class UserController extends Controller {
     return res.handle(response);
   };
 }
+
+export default new UserController();
