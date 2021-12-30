@@ -2,8 +2,6 @@
 	💻 Nodejs Typescript Project Boilerplate 💻
 </h1>
 
-## Contents
-
 - [🏃 Quick Start](#-quick-start)
 - [📝 Description](#-description)
 - [➕ Dependencies](#-dependencies)
