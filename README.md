@@ -14,15 +14,15 @@
 
 This project is a boilerplate for Nodejs/Typescript server-side applications. It already inclues:
 
-- ✅ docker-compose file including postgres and pgadmin container setup
-- ✅ Database connection with TypeORM configured (`seeds` included)
-- ✅ JWT Authentication with Passport
-- ✅ Routes configured
-- ✅ Password encryptation
-- ✅ Unit tests configured
-- ✅ Enviroments configured (for development, production, stage and qa)
-- ✅ Validation schemas (using Joi)
-- 🚧 Swagger
+- 🟢 docker-compose file including postgres and pgadmin container setup
+- 🟢 Database connection with TypeORM configured (`seeds` included)
+- 🟢 JWT Authentication with Passport
+- 🟢 Routes configured
+- 🟢 Password encryptation
+- 🟢 Unit tests configured
+- 🟢 Enviroments configured (for development, production, stage and qa)
+- 🟢 Validation schemas (using Joi)
+- 🔴 Swagger
 
 ## ➕ Dependencies
 
@@ -66,6 +66,10 @@ Each `start:*` script will run node/nodemon with an specific `.env.*` file. Here
 
 **Note** that except `start:dev`, all the other scripts will run
 the builded project. It means that it will not use Typescript, but Javascript, so make sure to change the `TYPEORM_DIR*` in the `.env*` files as specified in `.env.example`
+
+## ✅ Testing
+
+- Use `yarn test` or `npm test`
 
 ## ⚠️ Notes
 
