@@ -12,7 +12,7 @@
 
 ## 📝 Description
 
-This project is a boilerplate for Nodejs/Typescript server-side applications. It already inclues:
+This project is a boilerplate for Nodejs/Typescript server-side applications. It already includes:
 
 - 🟢 docker-compose file including postgres and pgadmin container setup
 - 🟢 Database connection with TypeORM configured (`seeds` included)
