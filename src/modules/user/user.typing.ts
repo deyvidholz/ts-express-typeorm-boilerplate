@@ -1,9 +1,7 @@
-export interface IUser {
-  id?: string;
-  username: string;
-  password: string;
-}
+import { User } from './user.entity';
 
-export type JwtPayload = {
-  id: string;
-};
+export type JwtPayload = { id: string };
+
+export type CreateUserDTO = Pick<User, 'username' | 'password'>;
+
+export type AuthUserDTO = Pick<User, 'username' | 'password'>;

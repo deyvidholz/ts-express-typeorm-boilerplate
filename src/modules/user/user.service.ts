@@ -8,11 +8,11 @@ import { UserAlreadyExistsException } from './exceptions/user-already-exists.exc
 import { User } from './user.entity';
 import { isValidPassword } from './user.helpers';
 import { userRepository } from './user.repository';
-import { IUser, JwtPayload } from './user.typing';
+import { AuthUserDTO, CreateUserDTO, JwtPayload } from './user.typing';
 import { userValidationSchema } from './validation-schemas/create-user.validation-schema';
 
 export class UserService {
-  async create(payload: IUser): Promise<CreateReturn> {
+  async create(payload: CreateUserDTO): Promise<CreateReturn> {
     const validation = userValidationSchema().validate(payload);
 
     if (validation.error) {
@@ -33,7 +33,7 @@ export class UserService {
     return { user };
   }
 
-  async auth(payload: AuthPayloadParam): Promise<AuthReturn> {
+  async auth(payload: AuthUserDTO): Promise<AuthReturn> {
     const { password, username } = payload;
 
     let user = await userRepository().findOne({
@@ -69,11 +69,6 @@ export class UserService {
 
 type CreateReturn = {
   user: User;
-};
-
-type AuthPayloadParam = {
-  username: string;
-  password: string;
 };
 
 type AuthReturn = {

@@ -1,9 +1,8 @@
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { encryptPassword } from './user.helpers';
-import { IUser } from './user.typing';
 
 @Entity({ name: 'users' })
-export class User implements IUser {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

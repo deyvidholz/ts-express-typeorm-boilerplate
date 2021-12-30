@@ -1,7 +1,7 @@
 import { CustomError, ExceptionData } from '../../../global/typing';
 
 export class UserAlreadyExistsException extends Error implements CustomError {
-  static defaultStatusCode = 400;
+  static defaultStatusCode = 409;
   public data: any;
 
   constructor(err?: ExceptionData) {

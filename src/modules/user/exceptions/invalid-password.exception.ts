@@ -1,7 +1,7 @@
 import { CustomError, ExceptionData } from '../../../global/typing';
 
 export class InvalidPasswordException extends Error implements CustomError {
-  static defaultStatusCode = 422;
+  static defaultStatusCode = 403;
   public data: any;
 
   constructor(err?: ExceptionData) {
