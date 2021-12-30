@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import * as jwt from 'jsonwebtoken';
+import { env } from '../../config/env.config';
 import { InvalidPayloadException } from '../../global/exceptions/invalid-payload.exception';
 import { ResourceNotFoundException } from '../../global/exceptions/resource-not-found.exception';
 import { InvalidPasswordException } from './exceptions/user-invalid-password.exception';
@@ -47,8 +48,8 @@ export class UserService {
       id: user.id,
     };
 
-    const token = jwt.sign(jwtPayload, process.env.JWT_SECRET_KEY, {
-      expiresIn: +process.env.JWT_EXPIRATION,
+    const token = jwt.sign(jwtPayload, env.JWT_SECRET_KEY, {
+      expiresIn: env.JWT_EXPIRATION,
     });
 
     const decodedToken = jwt.decode(token) as jwt.JwtPayload;

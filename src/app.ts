@@ -2,6 +2,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import { Server } from 'http';
+import './init';
 import path from 'path';
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
@@ -12,6 +13,7 @@ import { userRepository } from './modules/user/user.repository';
 import router from './global/routes';
 import { ControllerResolveResponse } from './global/controller';
 import { JwtPayload } from './modules/user/user.typing';
+import { env } from './config/env.config';
 
 export class App {
   public express: express.Application;
@@ -54,7 +56,7 @@ export class App {
     const JWTStrategy = passportJWT.Strategy;
 
     const JWTOptions = {
-      secretOrKey: process.env.JWT_SECRET_KEY,
+      secretOrKey: env.JWT_SECRET_KEY,
       jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
     };
 
@@ -81,7 +83,7 @@ export class App {
   }
 
   listen(): Server {
-    const port: number = +process.env.PORT || 3000;
+    const port: number = env.PORT;
 
     this.server = this.express.listen(port, () =>
       console.log(`Application running on ${port}`)
