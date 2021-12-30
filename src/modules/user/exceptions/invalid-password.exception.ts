@@ -1,8 +1,15 @@
-export class InvalidPasswordException extends Error {
-  static defaultStatusCode = 422;
+import { CustomError, ExceptionData } from '../../../global/typing';
 
-  constructor(msg: string = 'Username or password is invalid') {
-    super(msg);
+export class InvalidPasswordException extends Error implements CustomError {
+  static defaultStatusCode = 422;
+  public data: any;
+
+  constructor(err?: ExceptionData) {
+    super(err?.msg || 'Username or password is invalid');
     Object.setPrototypeOf(this, InvalidPasswordException.prototype);
+
+    if (err?.data && typeof err !== 'string') {
+      this.data = err.data;
+    }
   }
 }

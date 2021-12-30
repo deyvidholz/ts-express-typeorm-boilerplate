@@ -1,8 +1,15 @@
-export class UserAlreadyExistsException extends Error {
-  static defaultStatusCode = 400;
+import { CustomError, ExceptionData } from '../../../global/typing';
 
-  constructor(msg: string = 'Username already in use') {
-    super(msg);
+export class UserAlreadyExistsException extends Error implements CustomError {
+  static defaultStatusCode = 400;
+  public data: any;
+
+  constructor(err?: ExceptionData) {
+    super(err?.msg || 'Username already in use');
     Object.setPrototypeOf(this, UserAlreadyExistsException.prototype);
+
+    if (err?.data && typeof err !== 'string') {
+      this.data = err.data;
+    }
   }
 }

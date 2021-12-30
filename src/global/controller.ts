@@ -17,6 +17,7 @@ export class Controller {
       };
 
       const message = messagesByClass[error.constructor.name] || error.message;
+      const data = error.data;
 
       return {
         httpStatus:
@@ -26,6 +27,7 @@ export class Controller {
           500,
         data: {
           message,
+          data,
         },
       };
     }
