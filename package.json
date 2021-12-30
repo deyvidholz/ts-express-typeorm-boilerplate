@@ -5,10 +5,10 @@
   "author": "Deyvid Holz <deyvidholzt@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node build/src/server.js",
+    "start": "node -r dotenv/config ./build/server.js dotenv_config_path=.env.production",
     "start:dev": "nodemon src/server.ts",
     "test": "jest",
-    "build": "tsc",
+    "build": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata",
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
     "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop",
     "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync"

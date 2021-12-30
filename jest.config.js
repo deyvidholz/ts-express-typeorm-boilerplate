@@ -1,6 +1,4 @@
-import { Config } from '@jest/types';
-
-const config: Config.InitialOptions = {
+module.exports = {
   preset: 'ts-jest',
   rootDir: '.',
   testEnvironment: 'node',
@@ -9,5 +7,3 @@ const config: Config.InitialOptions = {
   modulePathIgnorePatterns: ['node_modules', '<rootDir>/dist/'],
   testRegex: ['.e2e-spec.ts$', '.spec.ts$'],
 };
-
-export default config;

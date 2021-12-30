@@ -3,3 +3,7 @@ build
 
 yarn-error.log
 .env
+.env.production
+.env.qa
+.env.development
+.env.stage
