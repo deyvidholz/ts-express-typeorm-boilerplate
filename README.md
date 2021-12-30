@@ -2,6 +2,18 @@
 	💻 Nodejs Typescript Project Boilerplate 💻
 </h1>
 
+## Contents
+
+- [🏃 Quick Start](#-quick-start)
+- [📝 Description](#-description)
+- [➕ Dependencies](#-dependencies)
+- [📁 Setting up database](#-setting-up-database)
+- [🔨 Building the project](#-building-the-project)
+- [🚀 Running the app](#-running-the-app)
+  - [🔸 Important!](#-important)
+- [✅ Testing](#-testing)
+- [⚠️ Notes](#️-notes)
+
 ## 🏃 Quick Start
 
 - Create `.env` file based on `.env.example` in the project folder
@@ -46,7 +58,7 @@ To install the dependencies, use `yarn` or `npm install`.
 - Create a `.env.production` file and change the `TYPEORM_DIR*` variables (specified in `.env.example`)
 - Use `yarn start` or `npm run start`
 
-## 🚀 Running the app (development mode)
+## 🚀 Running the app
 
 - Start docker containers using `docker-compose up`
 - Install dependencies using `yarn` or `npm install`
