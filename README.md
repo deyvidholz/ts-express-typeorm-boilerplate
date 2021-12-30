@@ -49,6 +49,7 @@ To install the dependencies, use `yarn` or `npm install`.
 ## 🚀 Running the app (development mode)
 
 - Start docker containers using `docker-compose up`
+- Install dependencies using `yarn` or `npm install`
 - Development: `yarn start:dev` or `npm run start:dev`
 - QA: `yarn start:qa` or `npm start:qa`
 - Stage: `yarn start:stage` or `npm start:stage`
