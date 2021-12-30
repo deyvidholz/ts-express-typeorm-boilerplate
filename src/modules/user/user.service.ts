@@ -1,9 +1,11 @@
 import 'dotenv/config';
 import * as jwt from 'jsonwebtoken';
+import { ILike } from 'typeorm';
 import { env } from '../../config/env.config';
 import { InvalidPayloadException } from '../../global/exceptions/invalid-payload.exception';
 import { ResourceNotFoundException } from '../../global/exceptions/resource-not-found.exception';
-import { InvalidPasswordException } from './exceptions/user-invalid-password.exception';
+import { InvalidPasswordException } from './exceptions/invalid-password.exception';
+import { UserAlreadyExistsException } from './exceptions/user-already-exists.exception';
 import { User } from './user.entity';
 import { isValidPassword } from './user.helpers';
 import { userRepository } from './user.repository';
@@ -12,12 +14,21 @@ import { userValidationSchema } from './validation-schemas/create-user.validatio
 
 export class UserService {
   async create(payload: IUser): Promise<CreateReturn> {
-    const user = userRepository().create(payload);
     const validation = userValidationSchema().validate(payload);
 
     if (validation.error) {
       throw new InvalidPayloadException();
     }
+
+    const userAlreadyExists = await userRepository().count({
+      where: { username: ILike(payload.username) },
+    });
+
+    if (userAlreadyExists) {
+      throw new UserAlreadyExistsException();
+    }
+
+    const user = userRepository().create(payload);
 
     await userRepository().save(user);
     return { user };
