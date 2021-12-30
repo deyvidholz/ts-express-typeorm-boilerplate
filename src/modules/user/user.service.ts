@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import * as jwt from 'jsonwebtoken';
 import { ILike } from 'typeorm';
 import { env } from '../../config/env.config';

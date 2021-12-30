@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { encryptPassword } from './user.helpers';
 import { IUser } from './user.typing';

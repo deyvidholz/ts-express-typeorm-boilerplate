@@ -6,9 +6,12 @@
   "license": "MIT",
   "scripts": {
     "start": "node -r dotenv/config ./build/server.js dotenv_config_path=.env.production",
-    "start:dev": "nodemon src/server.ts",
+    "start:production": "node -r dotenv/config ./build/server.js dotenv_config_path=.env.production",
+    "start:stage": "node -r dotenv/config ./build/server.js dotenv_config_path=.env.stage",
+    "start:qa": "node -r dotenv/config ./build/server.js dotenv_config_path=.env.qa",
+    "start:dev": "nodemon -r dotenv/config src/server.ts",
     "test": "jest",
-    "build": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata",
+    "build": "tsc",
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
     "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop",
     "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync"
