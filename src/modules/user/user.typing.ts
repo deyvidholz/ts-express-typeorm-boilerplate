@@ -3,3 +3,7 @@ export interface IUser {
   username: string;
   password: string;
 }
+
+export type JwtPayload = {
+  id: string;
+};

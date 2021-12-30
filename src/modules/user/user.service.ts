@@ -1,12 +1,12 @@
 import 'dotenv/config';
 import * as jwt from 'jsonwebtoken';
+import { InvalidPayloadException } from '../../global/exceptions/invalid-payload.exception';
+import { ResourceNotFoundException } from '../../global/exceptions/resource-not-found.exception';
 import { CryptHelper } from '../../helpers/crypt.helper';
-import { UserInvalidPassword } from './exceptions/user-invalid-password.exception';
-import { UserNotFound } from './exceptions/user-not-found.exception';
-import { UserValidationError } from './exceptions/user-validation.exception';
+import { InvalidPasswordException } from './exceptions/user-invalid-password.exception';
 import { User } from './user.entity';
 import { userRepository } from './user.repository';
-import { IUser } from './user.typing';
+import { IUser, JwtPayload } from './user.typing';
 import { userValidationSchema } from './validation-schemas/create-user.validation-schema';
 
 export class UserService {
@@ -15,7 +15,7 @@ export class UserService {
     const validation = userValidationSchema().validate(payload);
 
     if (validation.error) {
-      throw new UserValidationError();
+      throw new InvalidPayloadException();
     }
 
     await userRepository().save(user);
@@ -31,7 +31,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw new UserNotFound();
+      throw new ResourceNotFoundException();
     }
 
     const isPasswordInvalid: boolean = !CryptHelper.isValidPassword(
@@ -40,12 +40,11 @@ export class UserService {
     );
 
     if (isPasswordInvalid) {
-      throw new UserInvalidPassword();
+      throw new InvalidPasswordException();
     }
 
-    const jwtPayload = {
+    const jwtPayload: JwtPayload = {
       id: user.id,
-      username: user.username,
     };
 
     const token = jwt.sign(jwtPayload, process.env.JWT_SECRET_KEY, {

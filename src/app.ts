@@ -10,6 +10,8 @@ import { createConnection } from 'typeorm';
 import { corsConfig } from './config/cors.config';
 import { userRepository } from './modules/user/user.repository';
 import router from './global/routes';
+import { ControllerResolveResponse } from './global/controller';
+import { JwtPayload } from './modules/user/user.typing';
 
 export class App {
   public express: express.Application;
@@ -27,6 +29,19 @@ export class App {
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
     this.express.use(cors(corsConfig));
+
+    this.express.use(function (req, res, next) {
+      res.handle = async (
+        controllerResponse: Promise<ControllerResolveResponse>,
+        successStatusCode?: number
+      ) => {
+        const { httpStatus, data } = await controllerResponse;
+
+        return res.status(httpStatus || successStatusCode || 200).json(data);
+      };
+
+      next();
+    });
   }
 
   private setupRoutes() {
@@ -44,10 +59,10 @@ export class App {
     };
 
     let strategy = new JWTStrategy(JWTOptions, async function (
-      JWTPayload,
+      payload: JwtPayload,
       next
     ) {
-      const id = JWTPayload.id;
+      const id = payload.id;
       const user = await userRepository().findOne(id);
 
       if (user) {
