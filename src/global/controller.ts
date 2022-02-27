@@ -13,7 +13,7 @@ export class Controller {
       };
     } catch (error: any) {
       const messagesByClass = {
-        QueryFailedError: 'An unexpected error occurred', // security reasons
+        QueryFailedError: 'An unexpected error occurred',
       };
 
       const message = messagesByClass[error.constructor.name] || error.message;
